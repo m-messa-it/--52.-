@@ -22,9 +22,11 @@ namespace CalculatorApp
                 Console.WriteLine("2. Віднімання (-)");
                 Console.WriteLine("3. Множення (*)");
                 Console.WriteLine("4. Ділення (/)");
+                Console.WriteLine("5. Піднесення до степеня (x^y)");
+                Console.WriteLine("6. Квадратний корінь (√x)");
                 Console.WriteLine("0. Вихід з програми");
                 Console.WriteLine("----------------------------------------");
-                Console.Write("Оберіть потрібну дію (0-4): ");
+                Console.Write("Оберіть потрібну дію (0-6): ");
 
                 string choice = Console.ReadLine();
 
@@ -34,6 +36,8 @@ namespace CalculatorApp
                     case "2": CalculateBasic("-"); break;
                     case "3": CalculateBasic("*"); break;
                     case "4": CalculateBasic("/"); break;
+                    case "5": CalculatePower(); break;
+                    case "6": CalculateSqrt(); break;
                     case "0":
                         isRunning = false;
                         Console.WriteLine("\nЗавершення роботи. До побачення!");
@@ -67,6 +71,34 @@ namespace CalculatorApp
                 res = a / b;
             }
 
+            Console.WriteLine($"Результат: {res}");
+            WaitKey();
+        }
+
+        static void CalculatePower()
+        {
+            Console.WriteLine("\n--- Піднесення до степеня ---");
+            double baseNum = ReadNumber("Введіть число (основу): ");
+            double exp = ReadNumber("Введіть степінь: ");
+
+            double res = Math.Pow(baseNum, exp);
+            Console.WriteLine($"Результат: {res}");
+            WaitKey();
+        }
+
+        static void CalculateSqrt()
+        {
+            Console.WriteLine("\n--- Обчислення квадратного кореня ---");
+            double num = ReadNumber("Введіть число: ");
+
+            if (num < 0)
+            {
+                Console.WriteLine("Помилка: корінь з від'ємного числа не існує серед дійсних чисел!");
+                WaitKey();
+                return;
+            }
+
+            double res = Math.Sqrt(num);
             Console.WriteLine($"Результат: {res}");
             WaitKey();
         }
